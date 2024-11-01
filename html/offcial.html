@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <style>
+        li {
+            width: 150px;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        [class*='col-'] {
+            padding-right: 0;
+            padding-left: 0;
+        }
+        
+        .mauDo {
+            color: red;
+            font-size: 100%;
+        }
+    </style>
+    <script>
+        $(document).ready(function() {
+            var i = 2;
+            $("#btnDK").click(function() {
+                $("#myModal").modal('show')
+            });
+            $("#close").click(function() {
+                $("#myModal").modal('hide')
+            });
+
+            function KiemTraMa() {
+                var pattern = /^[0-9]{2} [0-9]{7}$/;
+                if (!pattern.test($("#tbMa").val())) {
+                    $("#tbMa").html("Sai dinh dang xxyyyyyyy");
+                    $("#tbMa").addclass("mauDo");
+                    return false;
+                } else {
+                    $("tbMa").html("Nhap dung");
+                    $("#tbMa").removeClass("mauDo");
+                    return true
+                }
+            }
+            $("txtMa").blur(KiemTraMa);
+
+            function KiemTraHT() {
+                var pattern = /^[A-Z][a-z]+(\s[A-z][a-z]+)+4/;
+                if ($("#txtHT").val() === "") {
+                    $("#tbTen").html("Nhap ten khong hop le (Tran Thi Trang)");
+                    $("#tbTen").addclass("mauDo");
+                    return false;
+                }
+                if (!pattern.test($("#tbHT").val())) {
+                    $("#tbTen").html("Chu cai dau cua moi tu phai viet hoa va toi thieu 2 tu");
+                    $("#tbTen").addclass("mauDo");
+                    return false;
+                }
+                $("tbTen").html("Nhap dung");
+                $("#tbten").removeClass("mauDo");
+                return true
+            }
+            $("txtMa").blur(KiemTraHT);
+        })
+    </script>
+</head>
+
+<body>
+    <div class="container border">
+        <div class="row">
+            <div class="col-12">
+                <img src="/img/namaste_lan-ngam-san-ho-01.jpg" width="100%">
+            </div>
+            <div class="row">
+                <nav class="navbar">
+                    <ul class="nav nav-navbar nav-navbar-expand">
+                        <li class="nav-item"><a href="#">TRANG CHỦ </a></li>
+                        <li class="nav-item"><a href="#" id="btnDK">ĐĂNG KÍ </a></li>
+                        <li class="nav-item"><a href="#">TRỢ GIÚP </a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="row table-responsive">
+                <table class="table-bordered table-light table-hover table-primary table table-striped" id="tbDachsach">
+                    <tr>
+                        <th>STT</th>
+                        <th>Mã Học Viên</th>
+                        <th>Họ tên</th>
+                        <th>Email</th>
+                        <th>Tiền Dịch Vụ</th>
+                        <th>Tiền Đồ Dùng</th>
+                        <th>Tổng Tiền</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>987654123</td>
+                        <td>Nguyễn Hoàng Huy </td>
+                        <td>huy@iuh.edu.vn</td>
+                        <td>130000</td>
+                        <td>20000</td>
+                        <td>150000</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="row">
+                <div class="modal fade" id="myModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="model-header">
+                                <h5>THÔNG TIN THANH TOÁN</h5>
+                                <button type="button" class="btn-close" id="close" data-dismiss="modal" aria-label="close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="" class="form-control">
+                                    <div class="row form-group p-1">
+                                        <div class="col-3 col-sm-3">
+                                            <label for="">Mã Học Viên:</label>
+                                        </div>
+                                        <div class="col-6 col-sm-6">
+                                            <input typy="text" class="form-control" id="txtMa" placeholder="123456789">
+                                        </div>
+                                        <div class="col-3 col-sm-3">
+                                            <span id="tbMa">*</span>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group p-1">
+                                        <div class="col-3 col-sm-3">
+                                            <label for="">Họ & Tên:</label>
+                                        </div>
+                                        <div class="col-6 col-sm-6">
+                                            <input typy="text" class="form-control" id="txtHT" placeholder="Tran Thi Trang">
+                                        </div>
+                                        <div class="col-3 col-sm-3">
+                                            <span id="tbTen">*</span>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group p-1">
+                                        <div class="col-3 col-sm-3">
+                                            <label for="">Email:</label>
+                                        </div>
+                                        <div class="col-6 col-sm-6">
+                                            <input typy="text" class="form-control" id="txtDC" placeholder="tranthitrang@iuh.edu.vn">
+                                        </div>
+                                        <div class="col-3 col-sm-3">
+                                            <span id="tbDC">*</span>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group p-1">
+                                        <div class="col-4 col-sm-3">
+                                            <label for="">Dịch Vụ:</label>
+                                        </div>
+                                        <div class="col-8 col-sm-6">
+                                            <select name="gia" id="slGia" class="form-control">
+                                                <option value="2000">Bơi</option>
+                                                <option value="3000">Trượt Ván</option>
+                                                <option value="4000">Moto Nước</option>
+                                                <option value="2000">Lặn</option>
+                                                <option value="3000">Nín Thở</option>
+                                                <option value="4000">Bơi Ngửa </option>
+                                               
+                                            </select>
+                                        </div>
+                                        <div class="row form-group p-1">
+                                            <div class="col-4 col-sm-3">
+                                                <label for="">Giá Tiền:</label>
+                                            </div>
+                                            <div class="col-8 col-sm-6">
+                                                <input type="text" name="txtDV" class="form-control" id="txtDV" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="row form-group p-1">
+                                            <div class="col-4 col-sm-3">
+                                                <label for="">Đồ Dùng</label>
+                                            </div>
+                                            <div class="col-8 col-sm-6">
+                                                <input type="checkbox" name="chkDoDung" class="chkDoDung" value="20000">Áo quần bơi
+                                            </div>
+                                        </div>
+                                        <div class="row form-group p-1">
+                                            <div class="col-4 col-sm-3">
+                                                <label for=""></label>
+                                            </div>
+                                            <div class="col-8 col-sm-6">
+                                                <input type="checkbox" name="chkDoDung" class="chkDoDung" value="30000">Phao
+                                            </div>
+                                        </div>
+                                        <div class="row form-group p-1">
+                                            <div class="col-4 col-sm-3">
+                                                <label for=""></label>
+                                            </div>
+                                            <div class="col-8 col-sm-6">
+                                                <input type="checkbox" name="chkDoDung" class="chkDoDung" value="50000">Kính bơi
+                                            </div>
+                                        </div>
+                                        <div class="row form-group p-1">
+                                            <div class="col-4 col-sm-3">
+                                                <label for="">Tiền Đồ Dùng</label>
+                                            </div>
+                                            <div class="col-8 col-sm-6">
+                                                <input type="text" name="txtDD" class="form-control" value="0" id="txtDD" disabled>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row form-group p-1">
+                                            <div class="col-4 col-sm-3">
+                                                <label for="">Tổng Tiền</label>
+                                            </div>
+                                            <div class="col-8 col-sm-6">
+                                                <input type="text" name="txtTong" class="form-control" id="txtTong" disabled>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row p-1">
+                                            <div class="col-sm-6">
+                                                <input type="button" value="Thanh toán" id="btnSave" class="btn btn-success btn-block" style="width:100%">
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <input type="reset" value="Hủy" id="" class="btn btn-danger btn-block" style="width:100%">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <h4>Trang thanh toán</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4 col-sm-4">
+                    <h6>Mã Sinh Viên:______________</h6>
+                </div>
+                <div class="col-4 col-sm-4">
+                    <h6>Họ Tên:______________</h6>
+                </div>
+                <div class="col-4 col-sm-4">
+                    <h6>Phòng Thi:______________</h6>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
